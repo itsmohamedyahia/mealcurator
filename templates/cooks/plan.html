@@ -9,8 +9,10 @@
     <thead>
         <th><a href="{% url 'view-plan' plan.id %}">{{ plan.name }}</a></th>
     </thead>
-    {% for meal in plan.meals.all %}
-<tr><td>{{ meal }}</td><td>{{ meal.rec_url }}</td></tr> 
+    {% for meal in meals %}
+    {% if meal.plan__id == plan.id %}
+<tr><td>{{ meal.meal__title }}</td><td>{{ meal.meal__meal_time }}</td></tr> 
+    {% endif %}
     {% endfor %}
 </table>
 </div>

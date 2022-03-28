@@ -58,7 +58,13 @@ class make_plan(CreateView):
 @login_required
 def view_plans(request):
     meal_plans = plan.objects.filter(owner=request.user, soft_delete=False)
-    context = {'meal_plans': meal_plans}
+    meals_on_plan = plan_meal.objects.filter(
+                        plan_id__in=meal_plans.values_list(
+                            'id', flat=True)
+                            ).values('plan__id', 'meal__title',
+                                     'plan__name')
+    
+    context = {'meal_plans': meal_plans, 'meals': meals_on_plan}
     template = 'cooks/plan.html'
     return render(request, template, context)
 
