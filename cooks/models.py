@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from meals.models import mstr_recipe, meal_time_choices
+from meals.models import mstr_recipe
 
 
 dow = [
@@ -30,12 +30,6 @@ class plan_meal(models.Model):
                              related_name='meals_on_plan')
     date_added = models.DateTimeField(auto_now=True)
     review = models.SmallIntegerField(default=0)
-    #meal_day = models.CharField('Day of Week for Meal',
-    #                            max_length=2,
-    #                            choices=dow)
-    #meal_time = models.CharField('Meal Time',
-    #                             max_length=2,
-    #                             choices=meal_time_choices)
 
     def __str__(self):
         return self.meal.title

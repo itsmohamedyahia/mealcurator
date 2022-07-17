@@ -127,6 +127,7 @@ def add_to_plan(request, plan_id):
     template = 'meals/showmeals.html'
     return render(request, template, context)
 
+
 @login_required
 def add_meal_to_plan(request, plan_id, meal_id):
     mstr_recipe.objects.filter(meal_id=meal_id).update(times_selected=F('times_selected') + 1)
@@ -146,4 +147,3 @@ def del_plan(request, plan_id):
     plan.objects.filter(id=plan_id,
                         owner=request.user).update(soft_delete=True)
     return redirect('welcome')
-
