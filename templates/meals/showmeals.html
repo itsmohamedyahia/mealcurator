@@ -61,10 +61,12 @@ td{
 <h3><a href="{% url 'add_to_plan' mp.id %}">Add More Recipes to Plan</a></h3>
 {% elif add_to_plan_view %}
 <h1>Browsing Recipes for: {{ mp.name }}</h1> 
+{% elif shared_view %}
+<h1> {{ shared.title }}</h1>
+<p>{{ shared.text }}</p>
 {% else %}
 <h1>Browse Recipes</h1>
 {% endif %}
-
 
 
 {% if add_to_plan_view %}
