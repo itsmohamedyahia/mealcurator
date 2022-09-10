@@ -135,9 +135,20 @@ td{
 </form>
 </div>
 {% endif %}
+
+{% if shared_view %}
+<h1>{{ shared_meal.title }}</h1>
+<h3>A shared recipe from share_meal.creator</h3>
+
+{% endif %}
 <hr/>
 
+{% if shared_view %}
+<p>{{ shared_meal.text }}</p>
 
+{% endif %}
+
+{}
 <div class="resultTbl">
     {% for meal in meals %}
         <div class=recCard>
@@ -242,6 +253,9 @@ td{
                 <a href="{% url 'add_meal_to_plan' mp.id meal.meal_id %}"><img src="{% static 'images/file-plus.svg' %}" alt="File with add sign" tite="Add Recipe to Meal Plan"></a>
                 {% endif %}
                 </td></tr>
+                {% if not shared_view %}
+                <td><a href="{% url 'share-meal' meal.meal_id %}"><img src="{% static 'images/share.svg' %}" alt="Share Icon" title="Share Meal"></a></td>
+                {% endif %}
             </table>
             <br>
             <br>
